@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
-namespace Viserio\Component\OptionsResolver\Tests\Providers;
+namespace Viserio\Component\OptionsResolver\Tests\Provider;
 
 use PHPUnit\Framework\TestCase;
 use Viserio\Component\Console\Application;
-use Viserio\Component\Console\Providers\ConsoleServiceProvider;
+use Viserio\Component\Console\Provider\ConsoleServiceProvider;
 use Viserio\Component\Container\Container;
-use Viserio\Component\OptionsResolver\Commands\OptionDumpCommand;
-use Viserio\Component\OptionsResolver\Providers\ConsoleCommandsServiceProvider;
+use Viserio\Component\OptionsResolver\Command\OptionDumpCommand;
+use Viserio\Component\OptionsResolver\Provider\ConsoleCommandsServiceProvider;
 
 class ConsoleCommandsServiceProviderTest extends TestCase
 {

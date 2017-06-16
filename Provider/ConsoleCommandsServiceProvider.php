@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
-namespace Viserio\Component\OptionsResolver\Providers;
+namespace Viserio\Component\OptionsResolver\Provider;
 
 use Interop\Container\ServiceProvider;
 use Psr\Container\ContainerInterface;
 use Viserio\Component\Console\Application;
-use Viserio\Component\OptionsResolver\Commands\OptionDumpCommand;
+use Viserio\Component\OptionsResolver\Command\OptionDumpCommand;
 
 class ConsoleCommandsServiceProvider implements ServiceProvider
 {
@@ -35,8 +35,6 @@ class ConsoleCommandsServiceProvider implements ServiceProvider
             $console->addCommands([
                 new OptionDumpCommand(),
             ]);
-
-            return $console;
         }
 
         return $console;
