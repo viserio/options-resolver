@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace Viserio\Component\OptionsResolver\Tests\Fixtures;
+namespace Viserio\Component\OptionsResolver\Tests\Fixture;
 
 use Exception;
 use Viserio\Component\Contract\OptionsResolver\ProvidesDefaultOptions as ProvidesDefaultOptionsContract;
@@ -8,7 +8,7 @@ use Viserio\Component\Contract\OptionsResolver\RequiresComponentConfig as Requir
 use Viserio\Component\Contract\OptionsResolver\RequiresMandatoryOptions as RequiresMandatoryOptionsContract;
 use Viserio\Component\Contract\OptionsResolver\RequiresValidatedConfig as RequiresValidatedConfigContract;
 
-class ValidateDefaultValueOnOverwriteFixture implements RequiresComponentConfigContract, ProvidesDefaultOptionsContract, RequiresValidatedConfigContract, RequiresMandatoryOptionsContract
+class ValidatedDimensionalConfigurationFixture implements RequiresComponentConfigContract, ProvidesDefaultOptionsContract, RequiresValidatedConfigContract, RequiresMandatoryOptionsContract
 {
     /**
      * {@inheritdoc}.
@@ -33,7 +33,11 @@ class ValidateDefaultValueOnOverwriteFixture implements RequiresComponentConfigC
      */
     public static function getMandatoryOptions(): iterable
     {
-        return ['maxLength'];
+        return [
+            'foo' => [
+                'maxLength',
+            ],
+        ];
     }
 
     /**
@@ -43,15 +47,15 @@ class ValidateDefaultValueOnOverwriteFixture implements RequiresComponentConfigC
     {
         return [
             'minLength' => function ($value): void {
-                if (! \is_int($value)) {
-                    throw new Exception('Value is not a int.');
-                }
+                throw new Exception('Dont throw exception on default values');
             },
-            'maxLength' => function ($value): void {
-                if (! \is_int($value)) {
-                    throw new Exception('Value is not a int.');
-                }
-            },
+            'foo' => [
+                'maxLength' => function ($value): void {
+                    if (! \is_int($value)) {
+                        throw new Exception('Value is not a int.');
+                    }
+                },
+            ],
         ];
     }
 }

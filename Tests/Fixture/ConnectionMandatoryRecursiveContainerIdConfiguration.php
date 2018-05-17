@@ -1,18 +1,19 @@
 <?php
 declare(strict_types=1);
-namespace Viserio\Component\OptionsResolver\Tests\Fixtures;
+namespace Viserio\Component\OptionsResolver\Tests\Fixture;
 
+use ArrayIterator;
 use Viserio\Component\Contract\OptionsResolver\RequiresComponentConfigId as RequiresComponentConfigIdContract;
 use Viserio\Component\Contract\OptionsResolver\RequiresMandatoryOptions as RequiresMandatoryOptionsContract;
 
-class ConnectionMandatoryContainerIdConfiguration implements RequiresComponentConfigIdContract, RequiresMandatoryOptionsContract
+class ConnectionMandatoryRecursiveContainerIdConfiguration implements RequiresComponentConfigIdContract, RequiresMandatoryOptionsContract
 {
     /**
      * {@inheritdoc}.
      */
     public static function getDimensions(): iterable
     {
-        return ['doctrine', 'connection'];
+        return new ArrayIterator(['doctrine', 'connection']);
     }
 
     /**
@@ -20,6 +21,6 @@ class ConnectionMandatoryContainerIdConfiguration implements RequiresComponentCo
      */
     public static function getMandatoryOptions(): iterable
     {
-        return ['driverClass', 'params'];
+        return new ArrayIterator(['params' => ['user', 'dbname'], 'driverClass']);
     }
 }

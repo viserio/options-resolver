@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
-namespace Viserio\Component\OptionsResolver\Tests\Fixtures;
+namespace Viserio\Component\OptionsResolver\Tests\Fixture;
 
 use Viserio\Component\Contract\OptionsResolver\RequiresComponentConfig as RequiresComponentConfigContract;
 
-class PlainConfiguration implements RequiresComponentConfigContract
+class ConnectionConfiguration implements RequiresComponentConfigContract
 {
     /**
      * {@inheritdoc}.
      */
     public static function getDimensions(): iterable
     {
-        return [];
+        return ['doctrine', 'connection'];
     }
 }

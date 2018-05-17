@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace Viserio\Component\OptionsResolver\Tests\Fixtures;
+namespace Viserio\Component\OptionsResolver\Tests\Fixture;
 
 use ArrayIterator;
 use ArrayObject;
