@@ -14,11 +14,10 @@ declare(strict_types=1);
 namespace Viserio\Component\OptionsResolver\Tests\Fixture;
 
 use Viserio\Contract\OptionsResolver\DeprecatedOptions as DeprecatedOptionsContract;
-use Viserio\Contract\OptionsResolver\ProvidesDefaultOptions as ProvidesDefaultOptionsContract;
-use Viserio\Contract\OptionsResolver\RequiresComponentConfigId as RequiresComponentConfigIdContract;
-use Viserio\Contract\OptionsResolver\RequiresMandatoryOptions as RequiresMandatoryOptionsContract;
+use Viserio\Contract\OptionsResolver\ProvidesDefaultOption as ProvidesDefaultOptionContract;
+use Viserio\Contract\OptionsResolver\RequiresComponentConfig as RequiresComponentConfigContract;
 
-class ConnectionComponentDefaultOptionsMandatoryContainedIdWithDeprecationKeyConfiguration implements DeprecatedOptionsContract, ProvidesDefaultOptionsContract, RequiresComponentConfigIdContract, RequiresMandatoryOptionsContract
+class ConnectionComponentDefaultOptionWithDeprecationKeyAndMessageConfiguration implements DeprecatedOptionsContract, ProvidesDefaultOptionContract, RequiresComponentConfigContract
 {
     /**
      * {@inheritdoc}.
@@ -31,9 +30,11 @@ class ConnectionComponentDefaultOptionsMandatoryContainedIdWithDeprecationKeyCon
     /**
      * {@inheritdoc}.
      */
-    public static function getMandatoryOptions(): array
+    public static function getDeprecatedOptions(): array
     {
-        return ['driverClass'];
+        return [
+            'params' => 'Option [%s].',
+        ];
     }
 
     /**
@@ -46,16 +47,6 @@ class ConnectionComponentDefaultOptionsMandatoryContainedIdWithDeprecationKeyCon
                 'host' => 'awesomehost',
                 'port' => '4444',
             ],
-        ];
-    }
-
-    /**
-     * {@inheritdoc}.
-     */
-    public static function getDeprecatedOptions(): array
-    {
-        return [
-            'driverClass',
         ];
     }
 }

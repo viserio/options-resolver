@@ -13,10 +13,11 @@ declare(strict_types=1);
 
 namespace Viserio\Component\OptionsResolver\Tests\Fixture;
 
-use Viserio\Contract\OptionsResolver\ProvidesDefaultOptions as ProvidesDefaultOptionsContract;
+use Viserio\Contract\OptionsResolver\ProvidesDefaultOption as ProvidesDefaultOptionContract;
 use Viserio\Contract\OptionsResolver\RequiresComponentConfig as RequiresComponentConfigContract;
+use Viserio\Contract\OptionsResolver\RequiresMandatoryOption as RequiresMandatoryOptionContract;
 
-class PackageDefaultOptionsComponentConfiguration implements ProvidesDefaultOptionsContract, RequiresComponentConfigContract
+class PackageDefaultAndMandatoryOptionComponentConfiguration implements ProvidesDefaultOptionContract, RequiresComponentConfigContract, RequiresMandatoryOptionContract
 {
     /**
      * {@inheritdoc}.
@@ -34,6 +35,16 @@ class PackageDefaultOptionsComponentConfiguration implements ProvidesDefaultOpti
         return [
             'minLength' => 2,
             'maxLength' => 10,
+        ];
+    }
+
+    /**
+     * {@inheritdoc}.
+     */
+    public static function getMandatoryOptions(): array
+    {
+        return [
+            'callback',
         ];
     }
 }

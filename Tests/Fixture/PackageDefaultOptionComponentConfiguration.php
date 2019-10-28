@@ -15,13 +15,8 @@ namespace Viserio\Component\OptionsResolver\Tests\Fixture;
 
 use Viserio\Contract\OptionsResolver\ProvidesDefaultOption as ProvidesDefaultOptionContract;
 use Viserio\Contract\OptionsResolver\RequiresComponentConfig as RequiresComponentConfigContract;
-use Viserio\Contract\OptionsResolver\RequiresMandatoryOption as RequiresMandatoryOptionContract;
-use Viserio\Contract\OptionsResolver\RequiresValidatedOption as RequiresValidatedOptionContract;
 
-class InvalidValidatedComponentConfigurationFixture implements ProvidesDefaultOptionContract,
-    RequiresComponentConfigContract,
-    RequiresMandatoryOptionContract,
-    RequiresValidatedOptionContract
+class PackageDefaultOptionComponentConfiguration implements ProvidesDefaultOptionContract, RequiresComponentConfigContract
 {
     /**
      * {@inheritdoc}.
@@ -38,24 +33,7 @@ class InvalidValidatedComponentConfigurationFixture implements ProvidesDefaultOp
     {
         return [
             'minLength' => 2,
-        ];
-    }
-
-    /**
-     * {@inheritdoc}.
-     */
-    public static function getMandatoryOptions(): array
-    {
-        return ['maxLength'];
-    }
-
-    /**
-     * {@inheritdoc}.
-     */
-    public static function getOptionValidators(): array
-    {
-        return [
-            'maxLength' => 'test',
+            'maxLength' => 10,
         ];
     }
 }
